@@ -1,0 +1,19 @@
+{
+  "name": "myteamtaskplanner",
+  "version": "1.0.0",
+  "description": "A simple task planner for teams",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaundersEddie/myTeamTaskPlanner.git"
+  },
+  "author": "Eddie Saunders",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaundersEddie/myTeamTaskPlanner/issues"
+  },
+  "homepage": "https://github.com/SaundersEddie/myTeamTaskPlanner#readme"
+}
