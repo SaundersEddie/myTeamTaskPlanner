@@ -5,8 +5,8 @@
 
 
 const mongoose = require ('mongoose');
-const db = ("../models/user")
-require ('dotenv').config();
+const User = require ('../models/user')
+require ('dotenv').config();    
 
 console.log ("Executing database clear and reseed");
 
@@ -19,26 +19,42 @@ mongoose.connect(
     }
   );
 
-  const userSeed = {
+const databaseConnection = mongoose.connection;
+databaseConnection.once("open", () => {
+console.log("MongoDB database connection established successfully");
+
+  const userSeed = new User ({
       userName: "Eddie",
       firstName: "Eddie",
       lastName: "Saunders",
       password: "Test12345",
       userEmail: "saunders.eddie@gmail.com",
       accessLevel: "User"
-  }
+  });
 
 //   Clear users then add
-db.User.deleteMany({})
-    .then(() => {
-        console.log ("Adding users: ", userSeed)
-    })
-    .then(() => db.User.collection.insertMany(userSeed))
+User.deleteMany({})
     .then((data) => {
-        process.exit(0);
+        console.log ("Adding users: ", userSeed);
+        userSeed.save(function(error, doc) {
+            if (error) return console.error(error);
+            console.log ("Saved");
+            process.exit(0);
+        });
     })
-    .catch((error) => {
-        console.error(error);
+    .catch((err) => {
+        console.log (`Error with database: ${err}`);
         process.exit(1);
-    })
+    });
+});
+
+
+
+    // .then(() => User.collection.insertMany(userSeed))
+    // .then((data) => {
+    //     process.exit(0);
+    // })
+    // .catch((error) => {
+    //     console.error(error);
+    //     process.exit(1);
 

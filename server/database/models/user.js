@@ -40,24 +40,24 @@ const userSchema = new Schema({
     }
 })
 
-userSchema.methods = {
-    checkPassword: function(inputPassword) { 
-        return bcrypt.compareSync(inputPassword, this.password)
-    },
-    hashPassword: plainTextPassword => {
-        return bcrypt.hashSync(plainTextPassword, 10)
-    }
-}
+// userSchema.methods = {
+//     checkPassword: function(inputPassword) { 
+//         return bcrypt.compareSync(inputPassword, this.password)
+//     },
+//     hashPassword: plainTextPassword => {
+//         return bcrypt.hashSync(plainTextPassword, 10)
+//     }
+// }
 
-userSchema.pre('save', function (next) {
-    if (!this.password) {
-      // console.log('No password provided!');
-      next()
-    } else {
-      this.password = this.hashPassword(this.password)
-      next()
-    }
-  })
+// userSchema.pre('save', function (next) {
+//     if (!this.password) {
+//       // console.log('No password provided!');
+//       next()
+//     } else {
+//       this.password = this.hashPassword(this.password)
+//       next()
+//     }
+//   })
   
   // Create reference to User & export
   const User = mongoose.model('User', userSchema)
