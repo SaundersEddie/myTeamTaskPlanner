@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
 mongoose.promise = Promise;
+console.log ("Inide user.js under models");
 
 const userSchema = new Schema({
     userName: {
@@ -38,3 +39,26 @@ const userSchema = new Schema({
         required: true
     }
 })
+
+userSchema.methods = {
+    checkPassword: function(inputPassword) { 
+        return bcrypt.compareSync(inputPassword, this.password)
+    },
+    hashPassword: plainTextPassword => {
+        return bcrypt.hashSync(plainTextPassword, 10)
+    }
+}
+
+userSchema.pre('save', function (next) {
+    if (!this.password) {
+      // console.log('No password provided!');
+      next()
+    } else {
+      this.password = this.hashPassword(this.password)
+      next()
+    }
+  })
+  
+  // Create reference to User & export
+  const User = mongoose.model('User', userSchema)
+  module.exports = User;
