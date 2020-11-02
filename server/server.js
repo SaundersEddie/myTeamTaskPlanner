@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt');
+const PORT = process.env.PORT || 5000;
+require ('dotenv').config();
 
 app.use(express.json());
 
@@ -33,4 +35,8 @@ app.post('/users/login', (req,res) => {
 
 })
 
-app.listen(3000);
+const databaseConnection = require ('./database/connection');
+
+app.listen(PORT, () => {
+    console.log (`App listening on PORT: ${PORT}`);
+});
