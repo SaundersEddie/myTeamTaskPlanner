@@ -5,8 +5,11 @@
 
 
 const mongoose = require ('mongoose');
-const User = require ('../models/user')
+const User = require ('../models/user');
+const bcrypt = require('bcrypt');
 require ('dotenv').config();    
+
+let ourHashedPassword = bcrypt.hashSync("Test1234", 10);
 
 console.log ("Executing database clear and reseed");
 
@@ -24,10 +27,10 @@ databaseConnection.once("open", () => {
 console.log("MongoDB database connection established successfully");
 
   const userSeed = new User ({
-      userName: "Eddie",
+      userName: "EddieTestPassword",
       firstName: "Eddie",
       lastName: "Saunders",
-      password: "Test12345",
+      password: ourHashedPassword,
       userEmail: "saunders.eddie@gmail.com",
       accessLevel: "User"
   });
