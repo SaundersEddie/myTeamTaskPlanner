@@ -45,7 +45,7 @@ module.exports = {
             userName: req.query.userName,
             firstName: req.query.firstName,
             lastName: req.query.lastName,
-            password: req.query.password,
+            password: bcrypt.hashSync(req.query.password, 10),
             userEmail: req.query.userEmail,
             accessLevel: req.query.accessLevel
         });
