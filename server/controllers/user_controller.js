@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt');
 console.log('Inside users_controller functions');
 module.exports = {
     getUser: (req, res, next) => {
+        mongoose.connection.readyState !== 1 ? console.log("Not yet connected") : console.log("Database is connected ");
         console.log("Inside getUser");
         if (req.user) {
             return res.json({ user: req.user });
@@ -27,6 +28,7 @@ module.exports = {
             });
     },
     getUserInfo: (req, res) => {
+        mongoose.connection.readyState !== 1 ? console.log("Not yet connected") : console.log("Database is connected ");
         console.log("Inside getUserInfo");
         db.User.find({
             userName: req.params.userName
@@ -39,6 +41,7 @@ module.exports = {
             });
     },
     addUser: (req, res) => {
+        mongoose.connection.readyState !== 1 ? console.log("Not yet connected") : console.log("Database is connected ");
         console.log("Inside addUser");
 
         const newUser = new db.User({
