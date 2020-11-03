@@ -1,11 +1,24 @@
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar-component';
+import About from './components/About/About-component';
+
+
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
   return (
-    <div className="container">
-      <h1> Our React App </h1>
-    </div>
+    <Router>
+      <Navbar />
+      <br />
+      {/* <Route path="/" exact component={DaysOfList} /> */}
+      {/* {<Route path="/edit/:id" component={DaysOfChangeById} /> */}
+      {/* <Route path="/create" component={DaysOfCreate} /> */}
+      <Route path="/about" component={About} />
+    </Router>
   );
 }
 
