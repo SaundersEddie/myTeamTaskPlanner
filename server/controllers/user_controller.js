@@ -28,9 +28,6 @@ module.exports = {
     },
     getUserInfo: (req, res) => {
         console.log("Inside getUserInfo");
-        console.log(`params passed ${req.params.userName}`);
-        // if (req.user) {
-
         db.User.find({
             userName: req.params.userName
         })
@@ -38,30 +35,27 @@ module.exports = {
                 return res.json(user);
             })
             .catch(err => {
-                res.json(err);
+                return res.json(err);
             });
-        // }
-        // else {
-        // return res.json({ user: null });
-        // }
     },
     addUser: (req, res) => {
         console.log("Inside addUser");
-        // return res.json();
-        // Test tp make sure all copies first
-        const userTest = new db.User({
-            userName: "TestyMcTestface",
-            firstName: "Testy",
-            lastName: "McTestface",
-            password: "testypassword",
-            userEmail: "testymctestface@gmail.com",
-            accessLevel: "Test"
+
+        const newUser = new db.User({
+            userName: req.query.userName,
+            firstName: req.query.firstName,
+            lastName: req.query.lastName,
+            password: req.query.password,
+            userEmail: req.query.userEmail,
+            accessLevel: req.query.accessLevel
         });
 
-        userTest.save(function (error, doc) {
+        newUser.save(function (error, doc) {
             if (error) return console.error(error);
             console.log("Saved");
         });
+
+        return res.json();
     }
 
 }
