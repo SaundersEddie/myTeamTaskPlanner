@@ -4,60 +4,49 @@
 // accidental connection with the rest of the app
 
 
-const mongoose = require ('mongoose');
-const User = require ('../models/user');
+const mongoose = require('mongoose');
+const User = require('../models/user');
 const bcrypt = require('bcrypt');
-require ('dotenv').config();    
+require('dotenv').config();
 
 let ourHashedPassword = bcrypt.hashSync("Test1234", 10);
 
-console.log ("Executing database clear and reseed");
+console.log("Executing database clear and reseed");
 
 mongoose.connect(
-    process.env.ATLAS_URI,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    }
-  );
+  process.env.ATLAS_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }
+);
 
 const databaseConnection = mongoose.connection;
 databaseConnection.once("open", () => {
-console.log("MongoDB database connection established successfully");
+  console.log("MongoDB database connection established successfully");
 
-  const userSeed = new User ({
-      userName: "EddieTestPassword",
-      firstName: "Eddie",
-      lastName: "Saunders",
-      password: ourHashedPassword,
-      userEmail: "saunders.eddie@gmail.com",
-      accessLevel: "User"
+  const userSeed = new User({
+    userName: "EddieTestPassword",
+    firstName: "Eddie",
+    lastName: "Saunders",
+    password: ourHashedPassword,
+    userEmail: "saunders.eddie@gmail.com",
+    accessLevel: "User"
   });
 
-//   Clear users then add
-User.deleteMany({})
+  //   Clear users then add
+  User.deleteMany({})
     .then((data) => {
-        console.log ("Adding users: ", userSeed);
-        userSeed.save(function(error, doc) {
-            if (error) return console.error(error);
-            console.log ("Saved");
-            process.exit(0);
-        });
+      console.log("Adding users: ", userSeed);
+      userSeed.save(function (error, doc) {
+        if (error) return console.error(error);
+        console.log("Saved");
+        process.exit(0);
+      });
     })
     .catch((err) => {
-        console.log (`Error with database: ${err}`);
-        process.exit(1);
+      console.log(`Error with database: ${err}`);
+      process.exit(1);
     });
 });
-
-
-
-    // .then(() => User.collection.insertMany(userSeed))
-    // .then((data) => {
-    //     process.exit(0);
-    // })
-    // .catch((error) => {
-    //     console.error(error);
-    //     process.exit(1);
-

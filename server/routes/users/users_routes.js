@@ -1,9 +1,11 @@
 // Our user APIs
 const router = require('express').Router();
-const userController=require('userController') // Enter full path
+const userController = require('../../controllers/user_controller') // Enter full path
+
+console.log("Inside users_routes.js");
 
 router.route('/')
-    .put(userContreoller.updateUser);
+    .get(userController.getUser);
 
 router.route('/users')
     .get(userController.getUsers);

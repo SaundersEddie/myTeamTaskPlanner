@@ -2,17 +2,17 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
-mongoose.promise = Promise;
-console.log ("Inide user.js under models");
+// mongoose.promise = Promise;
+console.log("Inide user.js under models");
 
 const userSchema = new Schema({
     userName: {
         type: String,
         unique: true,
         required: true
-    }, 
+    },
     firstName: {
         type: String,
         unique: false,
@@ -58,7 +58,7 @@ const userSchema = new Schema({
 //       next()
 //     }
 //   })
-  
-  // Create reference to User & export
-  const User = mongoose.model('User', userSchema)
-  module.exports = User;
+
+// Create reference to User & export
+const User = mongoose.model('User', userSchema)
+module.exports = User;

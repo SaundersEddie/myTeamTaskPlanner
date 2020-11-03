@@ -1,42 +1,15 @@
 // API server file
 const express = require('express');
 const app = express();
-const bcrypt = require('bcrypt');
 const PORT = process.env.PORT || 5000;
-require ('dotenv').config();
+
+require('dotenv').config();
+const userRoutes = require('./routes/users/users_routes')
+const databaseConnection = require('./database/connection');
 
 app.use(express.json());
-
-const users = [];
-
-// Build a test route for users, this is not for final production
-app.get ('/users', (req, res) => {
-    res.json(users);
-});
-
-app.post('/users', (req,res) => {
-    const hashedPassword = bcrypt.hashSync(req.body.password, 5);
-
-    const user = { name: req.body.name, password: hashedPassword}
-    users.push(user)
-    res.status(201).send()
-});
-
-app.post('/users/login', (req,res) => {
-    const user = users.find(user => user.name === req.body.name);
-    if (user == null) {
-        return res.status(400).send('Cannot find user')
-    }
-    if (bcrypt.compareSync(req.body.password, user.password)) {
-        res.send("Success")
-    } else {
-        res.send ("You get an F");
-    }
-
-})
-
-const databaseConnection = require ('./database/connection');
+app.use("/user", userRoutes);
 
 app.listen(PORT, () => {
-    console.log (`App listening on PORT: ${PORT}`);
+    console.log(`App listening on PORT: ${PORT}`);
 });
