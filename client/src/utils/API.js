@@ -11,5 +11,4 @@ export default {
         console.log("Inside API getUserName");
         return axios.get('/user/' + myUser)
     }
-
 }

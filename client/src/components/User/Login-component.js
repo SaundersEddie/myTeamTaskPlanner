@@ -20,13 +20,13 @@ export default class LoginAccount extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let myUser = API.getUserInfo("EddieTestPassword")
-            // .then(res => { console.log(res.data[0].userName) })
+        console.log(this.state.userName, this.state.password)
+        let myUser = API.getUserInfo(this.state.userName)
             .then(res => {
                 let myTest = res.data;
-                // console.log(myUser);
                 console.log(myTest[0].userName);
-            })
+                console.log(myTest[0].password)
+            });
     }
 
     render() {

@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose');
 const db = require('../database/models') // User model requirements
-// const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
 console.log('Inside users_controller functions');
@@ -29,8 +28,6 @@ module.exports = {
     },
     getUserInfo: (req, res) => {
         mongoose.connection.readyState !== 1 ? console.log("Not yet connected") : console.log("Database is connected ");
-        // console.log("Inside getUserInfo: ", req);
-
         db.User.find({
             userName: req.params.userName
         })
@@ -61,5 +58,4 @@ module.exports = {
 
         return res.json();
     }
-
 }

@@ -4,9 +4,6 @@ import Navbar from './components/Navbar/Navbar-component';
 import About from './components/About/About-component';
 import CreateAccount from './components/User/NewUser-component';
 import LoginAccount from './components/User/Login-component';
-// import './assets/css/fonts.css';
-
-
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
