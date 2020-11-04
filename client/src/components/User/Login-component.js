@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Button, Form, FormGroup, KLabel, Input, Label } from 'reactstrap';
+import './newUser.css';
 
 export default class LoginAccount extends Component {
     render() {
         return (
-            <div className="card mx-auto container" style={{ width: 35 + "rem" }}>
-                <div className="card-header">Account Login</div>
-                <div className="card-body">
-                    <h5 className="card-title">Login to an Existing Account</h5>
-                    <p className="card-text">Log Log Log</p>
-                    <a href="https://github.com/" className="btn btn-info">Help</a>
-                </div>
-            </div>
+            <form className="loginUserForm">
+                <h1><span className="font-weight-bold text-center">Login</span></h1><br />
+                <FormGroup>
+                    <Label>Username</Label>
+                    <Input type="text" placeholder="EXS" />
+                </FormGroup>
+                <FormGroup>
+                    <Label>Password</Label>
+                    <Input type="password" placeholder="Password" />
+                </FormGroup>
+                <Button className="btn-lag btn-dak btn-block">Login</Button>
+            </form>
         )
     }
 }
