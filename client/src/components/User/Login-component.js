@@ -1,5 +1,6 @@
 import React, { Component, useRef } from 'react';
 import { Button, Form, FormGroup, KLabel, Input, Label } from 'reactstrap';
+import API from '../../utils/API';
 import './userComponent.css';
 
 export default class LoginAccount extends Component {
@@ -19,7 +20,13 @@ export default class LoginAccount extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.userName, this.state.password);
+        let myUser = API.getUserInfo("EddieTestPassword")
+            // .then(res => { console.log(res.data[0].userName) })
+            .then(res => {
+                let myTest = res.data;
+                // console.log(myUser);
+                console.log(myTest[0].userName);
+            })
     }
 
     render() {

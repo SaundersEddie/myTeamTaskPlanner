@@ -29,7 +29,8 @@ module.exports = {
     },
     getUserInfo: (req, res) => {
         mongoose.connection.readyState !== 1 ? console.log("Not yet connected") : console.log("Database is connected ");
-        console.log("Inside getUserInfo");
+        // console.log("Inside getUserInfo: ", req);
+
         db.User.find({
             userName: req.params.userName
         })
