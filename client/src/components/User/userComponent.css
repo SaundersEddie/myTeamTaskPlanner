@@ -1,7 +1,6 @@
 /* New USer Form CSS */
-
 .newUserForm {
-    background-color: lavenderblush;
+    background-color: linen;
     color: black;
     width: 100%;
     max-width: 400px;
@@ -11,8 +10,8 @@
 }
 
 .loginUserForm {
-    background-color: lightsteelblue ;
-    color:mediumblue;
+    background-color: linen ;
+    color:black;
     width: 100%;
     max-width: 400px;
     padding: 15px;

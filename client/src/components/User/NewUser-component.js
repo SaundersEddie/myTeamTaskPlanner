@@ -1,57 +1,77 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import { Button, Form, FormGroup, KLabel, Input, Label } from 'reactstrap';
-import './newUser.css';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import './userComponent.css';
 
+
+console.log("Inside New User Component");
 
 export default class CreateAccount extends Component {
-    createAccount() {
-        alert("Create Account Selected");
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            userName: '',
+            email: '',
+            firstName: '',
+            lastName: '',
+            password: ''
+        };
+    }
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state.userName, this.state.email, this.state.firstName, this.state.lastName, this.state.password);
     }
 
     render() {
         return (
             <div>
-                <form className="newUserForm">
-                    <h1><span className="font-weight-bold text-center">New Account</span></h1><br />
+                <form className="newUserForm" onSubmit={this.handleSubmit}>
+                    <h1><span className="font-weight-bold text-center">NEW ACCOUNT</span></h1><br />
                     <FormGroup>
                         <Label>Username</Label>
-                        <Input type="text" placeholder="EXS" />
+                        <Input type="text"
+                            name="userName"
+                            value={this.state.userName}
+                            onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Email</Label>
-                        <Input type="text" placeholder="saunders.eddie@gmail.com" />
+                        <Input type="text"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Firstname</Label>
-                        <Input type="text" placeholder="Eddie" />
+                        <Input type="text"
+                            name="firstName"
+                            value={this.state.firstName}
+                            onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Lastname</Label>
-                        <Input type="text" placeholder="Saunders" />
+                        <Input type="text"
+                            name="lastName"
+                            value={this.state.lastName}
+                            onChange={this.handleChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label>Password</Label>
-                        <Input type="password" placeholder="Password" />
+                        <Input type="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.handleChange} />
                     </FormGroup>
-                    <Button className="btn-lag btn-dak btn-block" onClick={this.createAccount}>Create Account</Button>
+                    <Button className="btn-lag btn-dak btn-block" onClick={this.handleSubmit}>Create Account</Button>
                 </form>
-
             </div>
-
-
-
-
-
-
-            // <div className="card mx-auto container" style={{ width: 35 + "rem" }}>
-            //     <div className="card-header">Create New Account</div>
-            //     <div className="card-body">
-            //         <h5 className="card-title">Create Account</h5>
-            //         <p className="card-text">Please Fill In The Form to Create an Account</p>
-            //         <a href="https://github.com/" className="btn btn-info">Help</a>
-            //     </div>
-            // </div>
         )
     }
 }

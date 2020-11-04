@@ -1,13 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { Button, Form, FormGroup, KLabel, Input, Label } from 'reactstrap';
-import './newUser.css';
-
-
-
+import './userComponent.css';
 
 export default class LoginAccount extends Component {
-    testClick() {
-        alert("click!!!");
+    constructor(props) {
+        super(props)
+        this.state = {
+            userName: '',
+            password: ''
+        };
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state.userName, this.state.password);
     }
 
     render() {
@@ -16,13 +28,19 @@ export default class LoginAccount extends Component {
                 <h1><span className="font-weight-bold text-center">LOGIN</span></h1><br />
                 <FormGroup>
                     <Label>Username</Label>
-                    <Input type="text" placeholder="EXS" />
+                    <Input type="text"
+                        name="userName"
+                        value={this.state.userName}
+                        onChange={this.handleChange} />
                 </FormGroup>
                 <FormGroup>
                     <Label>Password</Label>
-                    <Input type="password" placeholder="Password" />
+                    <Input type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleChange} />
                 </FormGroup>
-                <Button className="btn-lag btn-dak btn-block" onClick={this.testClick}>Login</Button>
+                <Button className="btn-lag btn-dak btn-block" onClick={this.handleSubmit}>Login</Button>
             </form>
         )
     }
