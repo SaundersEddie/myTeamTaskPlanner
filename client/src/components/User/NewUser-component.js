@@ -5,6 +5,10 @@ import './newUser.css';
 
 
 export default class CreateAccount extends Component {
+    createAccount() {
+        alert("Create Account Selected");
+    }
+
     render() {
         return (
             <div>
@@ -30,7 +34,7 @@ export default class CreateAccount extends Component {
                         <Label>Password</Label>
                         <Input type="password" placeholder="Password" />
                     </FormGroup>
-                    <Button className="btn-lag btn-dak btn-block">Create Account</Button>
+                    <Button className="btn-lag btn-dak btn-block" onClick={this.createAccount}>Create Account</Button>
                 </form>
 
             </div>
