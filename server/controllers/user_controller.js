@@ -39,18 +39,19 @@ module.exports = {
             });
     },
     addUser: (req, res) => {
-        mongoose.connection.readyState !== 1 ? console.log("Not yet connected") : console.log("Database is connected ");
-        console.log("Inside addUser");
+        mongoose.connection.readyState !== 1 ? console.log("Not yet connected") : console.log("Database is connected in addUser");
+        console.log(`Inside addUser our req data:`, req.body);
 
         const newUser = new db.User({
-            userName: req.query.userName,
-            firstName: req.query.firstName,
-            lastName: req.query.lastName,
-            password: bcrypt.hashSync(req.query.password, 10),
-            userEmail: req.query.userEmail,
-            accessLevel: req.query.accessLevel
+            userName: req.body.userName,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            password: bcrypt.hashSync(req.body.password, 10),
+            userEmail: req.body.userEmail,
+            // accessLevel: req.query.accessLevel
+            accessLevel: "User"
         });
-
+        console.log (`newUser: ${newUser}`);
         newUser.save(function (error, doc) {
             if (error) return console.error(error);
             console.log("Saved");

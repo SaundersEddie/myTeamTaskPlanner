@@ -10,7 +10,7 @@ router.route('/')
 router.route('/users')
     .get(userController.getUsers);
 
-router.route('/addUser')
+router.route('/addUser:userName:firstName')
     .get(userController.addUser);
 
 router.route('/:userName')

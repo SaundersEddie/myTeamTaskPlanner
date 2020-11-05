@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import API from '../../utils/API';
 import './userComponent.css';
-
 
 console.log("Inside New User Component");
 
@@ -25,15 +25,27 @@ export default class CreateAccount extends Component {
     }
 
     handleSubmit = (event) => {
+        // Here we will call the create account
         event.preventDefault();
-        console.log(this.state.userName, this.state.email, this.state.firstName, this.state.lastName, this.state.password);
+        // Send our data to the API call to addUser
+        // console.log (`this.state.username: ${this.state.userName}`)
+        let ourUser = ({
+            userName: this.state.userName, 
+            email: this.state.email, 
+            firstName: this.state.firstName, 
+            lastName: this.state.lastName, 
+            password: this.state.password
+        });
+
+        console.log (`ourUser is`, ourUser);
+        API.addUser (ourUser);
     }
 
     render() {
         return (
             <div>
                 <form className="newUserForm" onSubmit={this.handleSubmit}>
-                    <h1><span className="font-weight-bold text-center">NEW ACCOUNT</span></h1><br />
+                    <h1><span className="text-center">NEW ACCOUNT</span></h1><br />
                     <FormGroup>
                         <Label>Username</Label>
                         <Input type="text"

@@ -20,7 +20,7 @@ export default class LoginAccount extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.userName, this.state.password)
+        // console.log(this.state.userName, this.state.password)
         let myUser = API.getUserInfo(this.state.userName)
             .then(res => {
                 let myTest = res.data;
@@ -32,7 +32,7 @@ export default class LoginAccount extends Component {
     render() {
         return (
             <form className="loginUserForm">
-                <h1><span className="font-weight-bold text-center">LOGIN</span></h1><br />
+                <h1><span className="text-center">LOGIN</span></h1><br />
                 <FormGroup>
                     <Label>Username</Label>
                     <Input type="text"
