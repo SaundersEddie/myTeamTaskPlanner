@@ -1,7 +1,7 @@
 // Connect to database
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
